@@ -7,7 +7,7 @@ def forward_process(time: int, alphas_bar: torch.tensor, x_0: torch.tensor, beta
     """
     assert time > 0
     t = time - 1
-    assert t - 1 >= 0
+    assert t - 1 >= 0, f"t - 1 = {t - 1}"
     mu = torch.sqrt(alphas_bar[t]) * x_0
     std = torch.sqrt(1 - alphas_bar[t])
     epsilon = torch.randn_like(x_0)
