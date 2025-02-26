@@ -40,7 +40,7 @@ class Mlp(torch.nn.Module):
         output_4 = self.layer_2(output_3)
 
         output_5 = self.network_tail[t - 1](output_4)
-        mu, h = torch.chunk(output_5, 2, dim=1)
+        mu, h = torch.chunk(output_5, 2, dim=0)
 
         var = torch.exp(h)
         std = torch.sqrt(var)
