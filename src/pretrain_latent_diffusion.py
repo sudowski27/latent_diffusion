@@ -7,7 +7,7 @@ from .forward_process import forward_process
 from .reverse_process import reverse_process
 
 
-def pretrain_latent_diffusion(diffusion_model: torch.nn.Module, encoder: torch.nn.Module, input_tensor: torch.tensor, optimizer, epochs, betas, alphas, alphas_bar, max_timesteps, logger):
+def pretrain_latent_diffusion(diffusion_model: torch.nn.Module, encoder: torch.nn.Module, input_tensor: torch.tensor, optimizer, epochs, betas, alphas, alphas_bar, max_timesteps, logger, device):
     """
     """
     min_timesteps = 2
@@ -33,7 +33,7 @@ def pretrain_latent_diffusion(diffusion_model: torch.nn.Module, encoder: torch.n
         for param in diffusion_model.network_tail[timestep - 1].parameters():
             param.requires_grad = True
 
-        mu_p, sigma_p, xt_minus1 = reverse_process(diffusion_model, timestep, xt)
+        mu_p, sigma_p, xt_minus1 = reverse_process(diffusion_model, timestep, xt, device)
 
         KL = torch.log(sigma_p) - torch.log(sigma_q) + (
             sigma_q**2 + (mu_q - mu_p)**2) / (2 * sigma_p**2)
