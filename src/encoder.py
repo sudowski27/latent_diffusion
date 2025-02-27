@@ -8,8 +8,8 @@ class Encoder(nn.Module):
     def __init__(self):
         super().__init__()
         features_0 = 1378
-        features_1 = 800
-        features_2 = 100
+        features_1 = 600
+        features_2 = 50
         features_3 = 800
         features_4 = 400
         features_5 = 200
