@@ -4,7 +4,7 @@ from .forward_process import forward_process
 from .reverse_process import reverse_process
 
 
-def visualize_0(input_tensor: torch.tensor, alphas_bar, betas, alphas, max_timesteps, diffusion_model, encoder, decoder):
+def visualize_0(input_tensor: torch.tensor, alphas_bar, betas, alphas, max_timesteps, diffusion_model, encoder, decoder, device):
     """
     Temp function for visualization results
     """
@@ -27,7 +27,7 @@ def visualize_0(input_tensor: torch.tensor, alphas_bar, betas, alphas, max_times
 
     for t in range(max_timesteps, min_timesteps - 1, -1):
         with torch.no_grad():
-            _, _, xt = reverse_process(diffusion_model, t, xt)
+            _, _, xt = reverse_process(diffusion_model, t, xt, device)
 
     xt = torch.ones_like(xt) * 0
     decoder.eval()
