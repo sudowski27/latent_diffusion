@@ -22,16 +22,17 @@ class Encoder(nn.Module):
         # self.layer_5 = nn.Linear(features_5, features_6)
 
         self.activation = nn.ReLU()
+        self.droput = nn.Dropout(p=0.1)
 
     def forward(self, x):
         """
         """
         output_0 = self.layer_0(x)
         output_1 = self.activation(output_0)
-        output_2 = nn.Dropout(p=0.5)(output_1)
+        output_2 = self.droput(output_1)
         output_3 = self.layer_1(output_2)
         output_4 = self.activation(output_3)
-        output_5 = nn.Dropout(p=0.5)(output_4)
+        output_5 = self.droput(output_4)
         # output_4 = self.layer_2(output_3)
         # output_5 = self.activation(output_4)
         # output_6 = self.layer_3(output_5)
