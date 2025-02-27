@@ -9,14 +9,14 @@ class Mlp(torch.nn.Module):
         super().__init__()
         self.activation = torch.nn.Sigmoid()
 
-        features_0 = 100
-        features_1 = 200
-        features_2 = 200
-        features_3 = 200
+        features_0 = 30
+        features_1 = 40
+        features_2 = 40
+        features_3 = 40
 
-        features_4 = 200
-        features_5 = 200
-        features_6 = 200
+        features_4 = 60
+        features_5 = 60
+        features_6 = 60
 
         self.layer_0 = torch.nn.Linear(features_0, features_1)
         self.layer_1 = torch.nn.Linear(features_1, features_2)
@@ -24,6 +24,8 @@ class Mlp(torch.nn.Module):
 
         self.network_tail = torch.nn.ModuleList([
             torch.nn.Sequential(
+                torch.nn.Linear(features_3, features_4),
+                self.activation,
                 torch.nn.Linear(features_4, features_5),
                 self.activation,
                 torch.nn.Linear(features_5, features_6)
