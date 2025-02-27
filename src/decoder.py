@@ -7,8 +7,8 @@ class Decoder(nn.Module):
     """
     def __init__(self):
         super().__init__()
-        features_0 = 100
-        features_1 = 800
+        features_0 = 50
+        features_1 = 600
         features_2 = 1378
         features_3 = 800
         features_4 = 1000
