@@ -23,13 +23,10 @@ def visualize_0(input_tensor: torch.tensor, alphas_bar, betas, alphas, max_times
             alphas
         )
 
-    xt = torch.randn_like(xt)
-
     for t in range(max_timesteps, min_timesteps - 1, -1):
         with torch.no_grad():
             _, _, xt = reverse_process(diffusion_model, t, xt, device)
 
-    xt = torch.ones_like(xt) * 0
     decoder.eval()
     with torch.no_grad():
         output_data = decoder(xt)
